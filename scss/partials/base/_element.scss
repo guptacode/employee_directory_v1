@@ -1,0 +1,25 @@
+/* ============================================= */
+/*                 Element                       */
+/* ============================================= */
+
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0px;
+   padding: 0px;
+//    font-family: 'Titillium Web', sans-serif;
+}
+
+body{
+    margin: 2rem;
+    position: relative;
+}
+
+.page-wrapper {
+    background-color: $white;
+}
+
+.avatar {
+    border-radius: 50%;
+}
