@@ -360,6 +360,20 @@ body {
   background-color: #fff;
 }
 
+h1 {
+  margin-left: 1rem;
+}
+
+input {
+  margin-left: auto;
+  border: lightgray solid 1px;
+  border-radius: 5px;
+  height: 80%;
+  align-self: center;
+  padding: 10px;
+  margin-right: 1rem;
+}
+
 .avatar {
   border-radius: 50%;
   margin: 1rem;
@@ -388,6 +402,11 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-right: 0.5rem;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
 }
 
 /* ============================================= */

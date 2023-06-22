@@ -6,11 +6,16 @@ const cardContainer = document.querySelector(".card-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
+const employee = document.querySelector("#employee");
 
-function displayEmployees(employeeData){
+function displayInitial(employeeData){
     employees = employeeData;
+    displayEmployees(employeeData);
+}
+
+function displayEmployees(arr){
     let employeeHTML = '';
-    employees.forEach((employee, index) => {
+    arr.forEach((employee, index) => {
         let name = employee.name;
         let email = employee.email;
         let city = employee.location.city;
@@ -29,9 +34,21 @@ function displayEmployees(employeeData){
     gridContainer.innerHTML = employeeHTML;
 }
 
-function displayModal(index) {
-    let { name, dob, phone, email, location: { city, street, state, postcode
-    }, picture } = employees[index];
+gridContainer.addEventListener('click', (e) => {
+    if (e.target !== gridContainer) {
+      const card = e.target.closest(".card-container");
+      const index = card.getAttribute("data-index");
+      const filteredEmployees = employee.value.trim() !== '' ? employees.filter((worker) => {
+        const searchTerm = employee.value.toLowerCase();
+        const fullName = `${worker.name.first} ${worker.name.last}`.toLowerCase();
+        return fullName.includes(searchTerm);
+      }) : employees;
+      displayModal(index, filteredEmployees);
+    }
+  });
+  
+  function displayModal(index, employees) {
+    let { name, dob, phone, email, location: { city, street, state, postcode }, picture } = employees[index];
     let date = new Date(dob.date);
     const modalHTML = `
       <img class="avatar" src="${picture.large}" />
@@ -47,23 +64,24 @@ function displayModal(index) {
     `;
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
-}
-
-gridContainer.addEventListener('click', (e) => {
-    if (e.target !== gridContainer){
-        const card = e.target.closest(".card-container");
-        const index = card.getAttribute("data-index");
-        displayModal(index);
-    }
-});
-
+  }
+  
 modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
 });
 
+employee.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filteredEmployees = employees.filter((employee) => {
+      const fullName = `${employee.name.first} ${employee.name.last}`.toLowerCase();
+      return fullName.includes(searchTerm);
+    });
+    displayEmployees(filteredEmployees);
+  });
+
 fetch(urlAPI)
     .then(response => response.json())
     .then(data => data.results)
-    .then(displayEmployees)
+    .then(displayInitial)
     .catch(err => console.log(err))
 

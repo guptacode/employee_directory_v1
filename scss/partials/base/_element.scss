@@ -20,6 +20,20 @@ body{
     background-color: $white;
 }
 
+h1 {
+    margin-left: 1rem;
+}
+
+input {
+    margin-left: auto;
+    border: $color-primary-light solid 1px;
+    border-radius: 5px;
+    height: 80%;
+    align-self: center;
+    padding: 10px;
+    margin-right: 1rem;
+}
+
 .avatar {
     border-radius: 50%;
     margin: 1rem;
