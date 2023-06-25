@@ -1,8 +1,8 @@
 let employees = [];
 const urlAPI = `https://randomuser.me/api/?results=12&inc=name, picture,
-email, location, phone, dob &noinfo &nat=US`
+email, location, phone, dob &noinfo &nat=US`;
+const body = document.querySelector("body");
 const gridContainer = document.querySelector(".grid-container");
-const cardContainer = document.querySelector(".card-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
@@ -23,13 +23,13 @@ function displayEmployees(arr){
         employeeHTML += `
         <div class="card-container" data-index="${index}">
             <img class="avatar" src="${picture.large}">
-            <div class="text-container">
+            <div class="text-container employee-display">
                 <h2 class="name">${name.first} ${name.last}</h2>
                 <p class="email">${email}</p>
                 <p class="address">${city}</p>
             </div>
         </div>  
-        `
+        `;
     });
     gridContainer.innerHTML = employeeHTML;
 }
@@ -51,23 +51,25 @@ gridContainer.addEventListener('click', (e) => {
     let { name, dob, phone, email, location: { city, street, state, postcode }, picture } = employees[index];
     let date = new Date(dob.date);
     const modalHTML = `
-      <img class="avatar" src="${picture.large}" />
-      <div class="text-container">
+      <img class="avatar" id="modal-avatar" src="${picture.large}" />
+      <div class="text-container text-modal">
         <h2 class="name">${name.first} ${name.last}</h2>
         <p class="email">${email}</p>
         <p class="address">${city}</p>
         <hr />
         <p>${phone}</p>
-        <p class="address">${street}, ${state} ${postcode}</p>
-        <p>Birthday:${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+        <p class="address">${street.number} ${street.name}, ${state} ${postcode}</p>
+        <p>Birthday: ${date.getMonth()} / ${date.getDate()} / ${date.getFullYear()}</p>
       </div>
     `;
     overlay.classList.remove("hidden");
+    body.classList.add("body-overlay");
     modalContainer.innerHTML = modalHTML;
   }
   
 modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
+    body.classList.remove("body-overlay");
 });
 
 employee.addEventListener('input', (e) => {
@@ -83,5 +85,5 @@ fetch(urlAPI)
     .then(response => response.json())
     .then(data => data.results)
     .then(displayInitial)
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 

@@ -8,7 +8,7 @@
    box-sizing: border-box;
    margin: 0px;
    padding: 0px;
-//    font-family: 'Titillium Web', sans-serif;
+   font-family: 'Montserrat', sans-serif;
 }
 
 body{
@@ -22,6 +22,12 @@ body{
 
 h1 {
     margin-left: 1rem;
+    font-weight: 600;
+}
+
+h2 {
+    font-weight: 600;
+    color: black;
 }
 
 input {
@@ -34,7 +40,16 @@ input {
     margin-right: 1rem;
 }
 
+hr {
+    margin: 10px 0;
+}
+
 .avatar {
     border-radius: 50%;
     margin: 1rem;
+    align-self: center;
+}
+
+.body-overlay {
+    background: rgba(100, 100, 100, 0.4)
 }

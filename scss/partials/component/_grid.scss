@@ -15,16 +15,24 @@
     border-radius: 5px;
     margin: 1rem;
     cursor: pointer;
+    max-width: 500px;
+    max-height: 200px;
 }
 
 .text-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-right: 0.5rem
+    margin-right: 0.5rem;
+    color: $color-primary;
+    font-weight: 300;
 }
 
 header {
     display: flex;
     flex-direction: row;
+}
+
+.employee-display {
+    line-height: 1.25;
 }

@@ -28,7 +28,18 @@
 
 .modal-close {
     position: absolute;
-    right: 15px;
+    right: 20px;
     top: 5px;
     cursor: pointer;
+    border: none;
+    background-color: $white;
+    font-size: 2rem;
+}
+
+.text-modal {
+    line-height: 1.75;
+}
+
+#modal-avatar{
+    margin: 0.5rem;
 }
